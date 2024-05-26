@@ -52,25 +52,8 @@ if user_prompt:
     # Send user's message to Gemini-Pro and get the response
     gemini_response = st.session_state.chat_session.send_message(user_prompt+"and provide me with links to buy some of the power tools needed"+"and an image of the tools")
 
-    response_json = json.loads(gemini_response)
-    text = response_json.get("text")  # Adjust key name based on documentation
-    image_urls = response_json.get("images", [])  # Handle empty list case
-
-    link_urls = []
-    links_data = response_json.get("links", [])  # Handle empty list case
-    for link in links_data:
-        link_url = link.get("url")
-        link_text = link.get("text", link_url)  # Use url as text if no text provided
-        link_urls.append((link_url, link_text))
-
+  
     # Display Gemini-Pro's response
     with st.chat_message("assistant"):
         st.markdown(gemini_response.text)
 
-      # Display Images
-      for image_url in image_urls:
-        st.image(image_url)
-    
-      # Display Links
-      for link_url, link_text in link_urls:
-        st.write(f"[{link_text}]({link_url})")
