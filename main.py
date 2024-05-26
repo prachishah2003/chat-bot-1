@@ -67,10 +67,10 @@ if user_prompt:
     with st.chat_message("assistant"):
         st.markdown(gemini_response.text)
 
-  # Display Images
-  for image_url in image_urls:
-    st.image(image_url)
-
-  # Display Links
-  for link_url, link_text in link_urls:
-    st.write(f"[{link_text}]({link_url})")
+      # Display Images
+      for image_url in image_urls:
+        st.image(image_url)
+    
+      # Display Links
+      for link_url, link_text in link_urls:
+        st.write(f"[{link_text}]({link_url})")
